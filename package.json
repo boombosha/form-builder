@@ -18,6 +18,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "@vee-validate/rules": "^4.15.0",
     "axios": "^1.8.2",
     "highcharts": "^12.1.2",

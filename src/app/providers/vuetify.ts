@@ -2,19 +2,34 @@
 import { createVuetify, type VuetifyOptions } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 
 // Опции для конфигурации Vuetify
 const vuetifyOptions: VuetifyOptions = {
   components, // Регистрируем все компоненты Vuetify
   directives, // Регистрируем все директивы Vuetify
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
+  },
   theme: {
-    defaultTheme: 'light', // Используем светлую тему по умолчанию
+    defaultTheme: 'dark', // Используем тёмную тему по умолчанию
     themes: {
       light: {
         colors: {
-          primary: '#1976D2', // Основной цвет
-          secondary: '#424242', // Вторичный цвет
-          accent: '#82B1FF', // Акцентный цвет
+          background: '#FFFFFF',
+          surface: '#FFFFFF',
+          primary: '#6200EE',
+          'primary-darken-1': '#3700B3',
+          secondary: '#03DAC6',
+          'secondary-darken-1': '#018786',
+          error: '#B00020',
+          info: '#2196F3',
+          success: '#4CAF50',
+          warning: '#FB8C00',
         },
       },
     },

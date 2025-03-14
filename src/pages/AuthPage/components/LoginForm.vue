@@ -1,6 +1,6 @@
 <template>
   <v-form @submit.prevent="submit">
-    <!-- Поле для ввода email -->
+    <!-- Поле для ввода логина -->
     <v-text-field
       v-model="login"
       label="Логин"
@@ -18,7 +18,7 @@
     />
 
     <!-- Кнопка для отправки формы -->
-    <v-btn type="submit" color="primary" :loading="isSubmitting">Войти</v-btn>
+    <v-btn type="submit" color="primary" :loading="isSubmitting" class="submitBtn">Войти</v-btn>
   </v-form>
 </template>
 
@@ -67,7 +67,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-  button {
+.submitBtn {
     margin-top: 20px;
   }
 </style>
