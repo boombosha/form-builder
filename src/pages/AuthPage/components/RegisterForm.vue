@@ -18,7 +18,7 @@
     />
 
     <!-- Кнопка для отправки формы -->
-    <v-btn type="submit" color="primary" :loading="isSubmitting" class="submitBtn">Зарегистрироваться</v-btn>
+    <v-btn type="submit" color="primary" :loading="isSubmitting" class="submitBtn mt-5">Зарегистрироваться</v-btn>
   </v-form>
 </template>
 
@@ -53,7 +53,4 @@ const submit = () => {
 </script>
 
 <style scoped>
-.submitBtn {
-  margin-top: 20px;
-}
 </style>

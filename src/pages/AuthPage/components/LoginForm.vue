@@ -1,59 +1,42 @@
 <template>
-  <v-form @submit.prevent="submit">
-    <!-- Поле для ввода логина -->
-    <v-text-field
-      v-model="login"
-      label="Логин"
-      :rules="loginRules"
-      required
-    />
+<form @submit.prevent="onSubmit">
+  <v-text-field
+    label="Логин"
+    v-model="login.value.value"
+    :error-messages="login.errorMessage.value"
+  ></v-text-field>
 
-    <!-- Поле для ввода пароля -->
-    <v-text-field
-      v-model="password"
-      label="Пароль"
-      type="password"
-      :rules="passwordRules"
-      required
-    />
-
-    <!-- Кнопка для отправки формы -->
-    <v-btn type="submit" color="primary" :loading="isSubmitting" class="submitBtn">Войти</v-btn>
-  </v-form>
+  <v-text-field
+    label="Пароль"
+    type="password"
+    v-model="password.value.value"
+    :error-messages="password.errorMessage.value"
+  ></v-text-field>
+  <v-btn color="primary" type="submit">Submit</v-btn>
+</form>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useField, useForm } from 'vee-validate';
+import * as yup from 'yup';
 
-// Состояние формы
-const login = ref('');
-const password = ref('');
-const isSubmitting = ref(false);
+const validationSchema = yup.object().shape({
+      login: yup.string().min(2).required(),
+      password: yup.string().min(8).required(),
+    });
 
-// Правила валидации
-const loginRules = [
-  (value: string) => !!value || 'Имя обязательно',
-  (value: string) => value.length >= 2 || 'Имя должно быть не менее 2 символов',
-];
+    const { handleSubmit, handleReset } = useForm({
+      validationSchema,
+    });
 
-const passwordRules = [
-  (value: string) => !!value || 'Пароль обязателен',
-  (value: string) => value.length >= 6 || 'Пароль должен быть не менее 6 символов',
-];
+    const login = useField('login', validationSchema);
+    const password = useField('password', validationSchema);
 
-// Обработчик отправки формы
-const emit = defineEmits(['submit']); // Событие для передачи данных наверх
-const submit = () => {
-  if (!login.value || !password.value) return;
-
-  isSubmitting.value = true; // Показываем состояние загрузки
-  emit('submit', { login: login.value, password: password.value }); // Передаем данные наверх
-  isSubmitting.value = false; // Сбрасываем состояние загрузки
-};
+    const onSubmit = handleSubmit(async (values) => {
+      alert(JSON.stringify(values, null, 2));
+    })
 </script>
 
 <style scoped>
-.submitBtn {
-  margin-top: 20px;
-}
 </style>

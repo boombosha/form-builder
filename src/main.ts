@@ -7,7 +7,8 @@ import App from './App.vue'
 import router from './router'
 import './app/providers/vee-validate';
 import vuetify from './app/providers/vuetify.ts';
-import '@mdi/font/css/materialdesignicons.min.css'
+import '@mdi/font/css/materialdesignicons.min.css';
+import './plugins/yupLocale';
 
 const app = createApp(App)
 
